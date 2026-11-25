@@ -73,6 +73,7 @@ const items=[
 {id:11,name:"পারফিউম",price:550,old:750,category:"বিউটি",emoji:"🧴",description:"সুগন্ধি",offer:true},
 {id:12,name:"ফুটবল",price:500,old:700,category:"খেলাধুলা",emoji:"⚽",description:"খেলার জন্য ফুটবল",offer:true}
 ];
+  {id:13, name;"perfume", price:480,old:960,free delivery, category:"perfume"}
 let cart={},active="সব",searchTerm="";
 const fmt=n=>"৳"+n.toLocaleString("bn-BD");
 function categories(){let cats=["সব","ইলেকট্রনিক্স","ফ্যাশন","ঘর ও জীবন","মোবাইল","বিউটি","খেলাধুলা","অফার"];document.getElementById("categories").innerHTML=cats.map(c=>`<button class="cat ${active===c?'active':''}" onclick="setCat('${c}')">${c==="সব"?"✨":c==="অফার"?"🔥":"🛍️"} ${c}</button>`).join("")}
