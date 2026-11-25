@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#075b3c">
+<title>ShopKD | Shop Smart. Shop Easy.</title>
+<style>
+:root{--green:#075b3c;--green2:#0b8a55;--mint:#e8f7ef;--yellow:#ffd33d;--ink:#17251e;--muted:#64746b;--white:#fff;--bg:#f5f8f6}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif;background:var(--bg);color:var(--ink)}
+a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer;border:0}
+.topline{background:#043c2a;color:#eaf7ef;padding:8px 4%;display:flex;justify-content:space-between;gap:10px;font-size:13px;flex-wrap:wrap}
+.header{background:#fff;padding:15px 4%;display:flex;align-items:center;gap:18px;flex-wrap:wrap;box-shadow:0 3px 12px #00000008}
+.logo{font-weight:950;font-size:29px;letter-spacing:-1px;color:#152c20;white-space:nowrap}.logo span{color:#0a9854}.logo small{display:block;font-size:11px;letter-spacing:0;font-weight:600;color:#68776e}
+.search{flex:1;display:flex;min-width:220px}.search input{width:100%;padding:12px 14px;border:1px solid #dce6df;border-radius:12px 0 0 12px;outline:0}.search button{padding:0 18px;background:var(--green);color:#fff;border-radius:0 12px 12px 0}
+.header-actions{display:flex;gap:9px}.btn{border-radius:11px;padding:11px 15px;font-weight:750}.green{background:var(--green);color:#fff}.light{background:var(--mint);color:var(--green)}
+.nav{background:var(--green);color:white;padding:12px 4%;display:flex;gap:20px;align-items:center;overflow:auto;white-space:nowrap}.nav a{font-weight:700}
+main{max-width:1240px;margin:auto;padding:16px}
+.hero{border-radius:20px;background:linear-gradient(115deg,#06442e,#138b54);color:#fff;min-height:260px;padding:34px;display:flex;align-items:center;justify-content:space-between;gap:20px;overflow:hidden;position:relative}
+.hero:after{content:"🛍️";font-size:150px;opacity:.17;position:absolute;right:25px;bottom:-35px}
+.hero-content{max-width:650px;position:relative;z-index:1}.hero h1{font-size:clamp(30px,5vw,48px);margin:0 0 10px;line-height:1.2}.hero p{font-size:18px;margin:0 0 20px;color:#e4f8ec}.hero .yellow{background:var(--yellow);color:#173c2b;padding:12px 20px;border-radius:30px;font-weight:850}
+.categories{display:flex;gap:10px;overflow:auto;padding:17px 0}.cat{background:#fff;border:1px solid #e2ebe5;border-radius:14px;padding:12px 16px;white-space:nowrap;font-weight:750;color:#315242}.cat.active{background:var(--green);color:#fff}
+.section-title{display:flex;justify-content:space-between;align-items:center;margin:12px 0}.section-title h2{margin:0;font-size:23px}.section-title span{color:var(--muted);font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.product{background:#fff;border:1px solid #e8eeea;border-radius:17px;overflow:hidden;box-shadow:0 5px 18px #163d2410;display:flex;flex-direction:column}.product-visual{height:155px;display:flex;align-items:center;justify-content:center;background:linear-gradient(140deg,#f1f7f3,#e6f4ec);font-size:75px;position:relative}.badge{position:absolute;top:10px;left:10px;background:#ed342b;color:white;border-radius:30px;padding:4px 8px;font-size:12px;font-weight:800}.product-body{padding:13px;display:flex;flex-direction:column;flex:1}.product h3{font-size:16px;margin:0 0 8px}.price{color:#087e49;font-size:20px;font-weight:900}.old{color:#8a938d;text-decoration:line-through;font-size:13px;margin-left:7px}.desc{color:#69766f;font-size:13px;margin:8px 0 12px}.add{margin-top:auto;background:var(--green);color:#fff;border-radius:10px;padding:10px;font-weight:800}
+.promo{margin-top:20px;background:#e5f6ed;border-radius:16px;padding:20px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;color:#124a32}.features{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:20px 0}.feature{background:white;padding:15px;border-radius:14px;text-align:center}.feature b{display:block;margin-bottom:4px}.feature span{font-size:13px;color:var(--muted)}
+footer{background:#073d2a;color:#eaf7ef;padding:28px 4%;margin-top:20px;text-align:center}footer .logo{color:white}footer p{color:#c8e2d3;font-size:14px}
+.cart-fab{position:fixed;right:16px;bottom:16px;background:#0a8a51;color:#fff;border-radius:40px;padding:14px 18px;box-shadow:0 5px 20px #0003;font-weight:850;z-index:4}
+.overlay{display:none;position:fixed;inset:0;background:#0007;z-index:10;align-items:center;justify-content:center;padding:14px}.overlay.show{display:flex}.modal{background:white;border-radius:18px;padding:20px;width:min(500px,100%);max-height:90vh;overflow:auto}.modal-head{display:flex;justify-content:space-between;align-items:center}.modal-head h2{margin:0}.x{background:#eef3ef;border-radius:8px;padding:7px 10px}.cartrow{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid #e9eee9;align-items:center}.qty{display:flex;align-items:center;gap:7px}.qty button{background:#e9f4ed;border-radius:7px;padding:5px 9px}.field{margin:10px 0}.field label{display:block;font-size:13px;font-weight:750;margin-bottom:5px}.field input,.field textarea{width:100%;padding:11px;border:1px solid #dbe5dd;border-radius:10px;font:inherit}.checkout{width:100%;background:#16854d;color:#fff;padding:13px;border-radius:10px;font-weight:850;margin-top:10px}.empty{text-align:center;padding:30px;color:var(--muted)}
+@media(max-width:900px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.features{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.topline{justify-content:center}.header{gap:10px}.logo{font-size:25px}.header-actions{width:100%}.header-actions .btn{flex:1}.nav{gap:15px}.hero{padding:24px;min-height:230px}.hero p{font-size:15px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.product-visual{height:120px;font-size:58px}.product-body{padding:10px}.product h3{font-size:14px}.price{font-size:18px}.features{grid-template-columns:repeat(2,1fr)}main{padding:11px}.section-title h2{font-size:20px}}
+</style>
+</head>
+<body>
+<div class="topline"><span>🚚 সারা বাংলাদেশে ডেলিভারি</span><span>🔒 নিরাপদ কেনাকাটা</span><span>💬 কাস্টমার সাপোর্ট</span></div>
+<header class="header">
+  <a class="logo" href="#">Shop<span>KD</span><small>Shop Smart. Shop Easy.</small></a>
+  <div class="search"><input id="search" placeholder="পণ্য খুঁজুন..." aria-label="পণ্য খুঁজুন"><button id="searchClear" title="Search">🔎</button></div>
+  <div class="header-actions"><button class="btn light" onclick="openCart()">🛒 কার্ট <span id="cartCount">0</span></button><button class="btn green" onclick="openCart()">অর্ডার করুন</button></div>
+</header>
+<nav class="nav"><a href="#" onclick="setCat('সব');return false">🏠 হোম</a><a href="#products">🛍️ সব পণ্য</a><a href="#" onclick="setCat('অফার');return false">🔥 অফার</a><a href="#delivery">🚚 ডেলিভারি</a><a href="#contact">☎️ যোগাযোগ</a></nav>
+<main>
+<section class="hero"><div class="hero-content"><h1>ShopKD-তে কেনাকাটা হোক সহজ!</h1><p>পছন্দের পণ্য, সেরা দামে। অনলাইনে অর্ডার করুন আর ঘরে বসেই পেয়ে যান।</p><button class="yellow" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">এখনই কিনুন →</button></div></section>
+<div class="categories" id="categories"></div>
+<div class="section-title" id="products"><h2>⭐ জনপ্রিয় পণ্যসমূহ</h2><span id="productCount"></span></div>
+<div class="grid" id="productGrid"></div>
+<section class="promo" id="delivery"><div><h2 style="margin:0 0 5px">🚚 সারা বাংলাদেশে ডেলিভারি</h2><div>অর্ডার করুন সহজে — ডেলিভারি চার্জ আপনার ঠিকানা অনুযায়ী</div></div><button class="btn green" onclick="openCart()">এখনই অর্ডার করুন</button></section>
+<div class="features"><div class="feature"><b>🔐 নিরাপদ কেনাকাটা</b><span>আপনার অর্ডার যত্নসহকারে</span></div><div class="feature"><b>🔄 সহজ রিটার্ন</b><span>দোকানের নীতিমালা অনুযায়ী</span></div><div class="feature"><b>💬 কাস্টমার সাপোর্ট</b><span>অর্ডার বিষয়ে সহায়তা</span></div><div class="feature"><b>🤝 বিশ্বস্ত সার্ভিস</b><span>সন্তুষ্টিই আমাদের লক্ষ্য</span></div></div>
+</main>
+<footer id="contact"><div class="logo">Shop<span>KD</span></div><p>Shop Smart. Shop Easy.</p><p>আপনার পছন্দ, আমাদের সেরা সংগ্রহ</p><p>WhatsApp অর্ডার চালু করতে নিচের কোডে দোকানের নম্বর বসান।</p><small>© <span id="year"></span> ShopKD. All rights reserved.</small></footer>
+<button class="cart-fab" onclick="openCart()">🛒 কার্ট <span id="fabCount">0</span> · <span id="fabTotal">৳0</span></button>
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeCart()"><div class="modal"><div class="modal-head"><h2>🛒 আপনার কার্ট</h2><button class="x" onclick="closeCart()">✕</button></div><div id="cartItems"></div><h3>মোট: <span id="total">৳0</span></h3><hr><h3>অর্ডারের তথ্য</h3>
+<div class="field"><label>আপনার নাম *</label><input id="customerName" placeholder="নাম লিখুন"></div>
+<div class="field"><label>মোবাইল নম্বর *</label><input id="customerPhone" inputmode="tel" placeholder="01XXXXXXXXX"></div>
+<div class="field"><label>সম্পূর্ণ ঠিকানা *</label><textarea id="customerAddress" rows="3" placeholder="বাড়ি, এলাকা, জেলা"></textarea></div>
+<div class="field"><label>অতিরিক্ত নোট</label><input id="customerNote" placeholder="ঐচ্ছিক"></div>
+<button class="checkout" onclick="sendOrder()">WhatsApp-এ অর্ডার পাঠান</button><p style="font-size:12px;color:#68766e">অর্ডার পাঠাতে ShopKD-এর WhatsApp নম্বর সেট করা থাকতে হবে।</p>
+</div></div>
+<script>
+/* SHOP OWNER: Replace the digits below with your WhatsApp number, country code first, no + sign.
+   Example Bangladesh: 8801XXXXXXXXX */
+const SHOP_WHATSAPP = "8801XXXXXXXXX";
+const items=[
+{id:1,name:"স্মার্ট ওয়াচ",price:850,old:1200,category:"ইলেকট্রনিক্স",emoji:"⌚",description:"দৈনন্দিন ব্যবহারের স্মার্ট ঘড়ি",offer:true},
+{id:2,name:"ওয়্যারলেস ইয়ারবাড",price:650,old:950,category:"ইলেকট্রনিক্স",emoji:"🎧",description:"ওয়্যারলেস মিউজিক ও কল",offer:true},
+{id:3,name:"মোবাইল চার্জার",price:350,old:500,category:"ইলেকট্রনিক্স",emoji:"🔌",description:"চার্জিং অ্যাক্সেসরিজ",offer:true},
+{id:4,name:"লেডিস হ্যান্ডব্যাগ",price:750,old:1000,category:"ফ্যাশন",emoji:"👜",description:"স্টাইলিশ দৈনন্দিন ব্যাগ",offer:true},
+{id:5,name:"সানগ্লাস",price:300,old:450,category:"ফ্যাশন",emoji:"🕶️",description:"ফ্যাশনেবল সানগ্লাস",offer:true},
+{id:6,name:"পানির বোতল",price:250,old:350,category:"ঘর ও জীবন",emoji:"🧴",description:"বাইরে ও ঘরে ব্যবহার",offer:true},
+{id:7,name:"মিনি LED লাইট",price:220,old:320,category:"ঘর ও জীবন",emoji:"💡",description:"ঘরের জন্য ছোট লাইট",offer:true},
+{id:8,name:"কিচেন টুলস",price:400,old:600,category:"ঘর ও জীবন",emoji:"🍳",description:"রান্নাঘরের কাজে সহায়ক",offer:true},
+{id:9,name:"মোবাইল কভার",price:180,old:250,category:"মোবাইল",emoji:"📱",description:"ফোন সুরক্ষার কভার",offer:true},
+{id:10,name:"ব্যাকপ্যাক",price:950,old:1300,category:"ফ্যাশন",emoji:"🎒",description:"স্কুল, কাজ ও ভ্রমণে",offer:true},
+{id:11,name:"পারফিউম",price:550,old:750,category:"বিউটি",emoji:"🧴",description:"সুগন্ধি",offer:true},
+{id:12,name:"ফুটবল",price:500,old:700,category:"খেলাধুলা",emoji:"⚽",description:"খেলার জন্য ফুটবল",offer:true}
+];
+let cart={},active="সব",searchTerm="";
+const fmt=n=>"৳"+n.toLocaleString("bn-BD");
+function categories(){let cats=["সব","ইলেকট্রনিক্স","ফ্যাশন","ঘর ও জীবন","মোবাইল","বিউটি","খেলাধুলা","অফার"];document.getElementById("categories").innerHTML=cats.map(c=>`<button class="cat ${active===c?'active':''}" onclick="setCat('${c}')">${c==="সব"?"✨":c==="অফার"?"🔥":"🛍️"} ${c}</button>`).join("")}
+function setCat(c){active=c;categories();renderProducts()}
+function renderProducts(){let shown=items.filter(p=>(active==="সব"||(active==="অফার"?p.offer:p.category===active))&&p.name.toLowerCase().includes(searchTerm.toLowerCase()));document.getElementById("productCount").textContent=shown.length+"টি পণ্য";document.getElementById("productGrid").innerHTML=shown.map(p=>`<article class="product"><div class="product-visual"><span class="badge">অফার</span>${p.emoji}</div><div class="product-body"><h3>${p.name}</h3><div><span class="price">${fmt(p.price)}</span><span class="old">${fmt(p.old)}</span></div><p class="desc">${p.description}</p><button class="add" onclick="add(${p.id},event)">＋ কার্টে যোগ করুন</button></div></article>`).join("")||'<div class="empty">এই নামে কোনো পণ্য পাওয়া যায়নি।</div>'}
+function add(id,e){cart[id]=(cart[id]||0)+1;refresh();let btn=e?.currentTarget;if(btn){let old=btn.textContent;btn.textContent="✓ যোগ হয়েছে";setTimeout(()=>btn.textContent=old,700)}
+}
+function total(){return Object.entries(cart).reduce((s,[id,q])=>s+items.find(p=>p.id==id).price*q,0)}
+function qty(){return Object.values(cart).reduce((a,b)=>a+b,0)}
+function refresh(){document.getElementById("cartCount").textContent=qty();document.getElementById("fabCount").textContent=qty();document.getElementById("fabTotal").textContent=fmt(total())}
+function openCart(){renderCart();document.getElementById("overlay").classList.add("show")}
+function closeCart(){document.getElementById("overlay").classList.remove("show")}
+function renderCart(){let target=document.getElementById("cartItems");let rows=Object.entries(cart);target.innerHTML=rows.length?rows.map(([id,q])=>{let p=items.find(x=>x.id==id);return `<div class="cartrow"><div>${p.emoji} <b>${p.name}</b><br><small>${fmt(p.price)} × ${q}</small></div><div class="qty"><button onclick="changeQty(${id},-1)">−</button>${q}<button onclick="changeQty(${id},1)">＋</button></div></div>`}).join(""):'<div class="empty">কার্ট খালি। পণ্য যোগ করুন।</div>';document.getElementById("total").textContent=fmt(total())}
+function changeQty(id,d){cart[id]=(cart[id]||0)+d;if(cart[id]<=0)delete cart[id];refresh();renderCart()}
+function sendOrder(){if(!qty()){alert("আগে কার্টে পণ্য যোগ করুন।");return}let name=document.getElementById("customerName").value.trim(),phone=document.getElementById("customerPhone").value.trim(),address=document.getElementById("customerAddress").value.trim(),note=document.getElementById("customerNote").value.trim();if(!name||!phone||!address){alert("নাম, মোবাইল নম্বর ও ঠিকানা পূরণ করুন।");return}if(SHOP_WHATSAPP.includes("X")){alert("ওয়েবসাইটের কোডে SHOP_WHATSAPP নম্বরটি তোমার দোকানের WhatsApp নম্বর দিয়ে পরিবর্তন করতে হবে।");return}let lines=Object.entries(cart).map(([id,q])=>{let p=items.find(x=>x.id==id);return `${p.name} × ${q} = ${fmt(p.price*q)}`});let msg=`ShopKD-তে নতুন অর্ডার!%0A%0Aনাম: ${encodeURIComponent(name)}%0Aফোন: ${encodeURIComponent(phone)}%0Aঠিকানা: ${encodeURIComponent(address)}%0A%0A${lines.map(encodeURIComponent).join("%0A")}%0A%0Aমোট: ${encodeURIComponent(fmt(total()))}%0Aনোট: ${encodeURIComponent(note||"নেই")}`;window.open(`https://wa.me/${SHOP_WHATSAPP}?text=${msg}`,"_blank")}
+document.getElementById("search").addEventListener("input",e=>{searchTerm=e.target.value;renderProducts()});
+document.getElementById("searchClear").onclick=()=>{document.getElementById("search").value="";searchTerm="";renderProducts()};
+document.getElementById("year").textContent=new Date().getFullYear();
+categories();renderProducts();refresh();
+</script>
+</body>
+</html>
